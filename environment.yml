@@ -1,0 +1,3 @@
+name: FARM_proj
+dependencies:
+  - python=3.7
