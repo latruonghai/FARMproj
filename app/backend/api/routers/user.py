@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.backend.db.models.user import User
+from app.backend.db.models.user import User, ShowUser
 from app.backend.respositories.user import create_user
 
 # from app.backend.config.db import conn
@@ -7,7 +7,7 @@ from app.backend.respositories.user import create_user
 route = APIRouter()
 
 # Create User
-@route.post("/user", response_model=User)
+@route.post("/user", response_model=ShowUser)
 async def post_user(user: User):
     response = await create_user(user.dict())
     
