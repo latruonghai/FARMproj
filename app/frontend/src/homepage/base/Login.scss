@@ -1,0 +1,54 @@
+@use "./variable" as var;
+
+body{
+    font-size: var.$font-size-normal;
+    .login{
+        &-form{
+            
+            display: grid;
+
+            width: 400px;
+            height: auto;
+            // margin-top: 10px;
+            margin: auto;
+            border-radius: 20px;
+            border-style: solid;
+            border-width: 1px;
+        }
+        &-title{
+            color: var.$blue;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+        &-input{
+            @extend .login-form;
+            width: 90%;
+            border-width: 0;
+        }
+    }
+    .article-login{
+        @extend .login-title;
+        font-size: var.$font-size-small;
+        margin-top: 5px;
+    }
+    .input-box{
+        @extend .login-title;
+        width: 60%;
+        transform: translateX(30%);
+        font-size: var.$font-size-small - 2;
+    }
+    #forgot-password{
+        font-weight: bold;
+        font-size: var.$font-size-normal;
+        font-style: italic;
+        left: 75%;
+        position: relative;
+        color: blue;
+        margin-top: 10px;
+    }
+    .btn{
+        display: flex;
+        justify-content: center;
+    }
+}

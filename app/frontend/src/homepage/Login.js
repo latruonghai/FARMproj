@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './css/Login.css';
 import { Component } from 'react';
-
+import {useForm} from 'react-hook-form';
+import 'bootstrap/dist/css/bootstrap.min.css';
 class Login extends Component{
 
   
@@ -25,6 +26,7 @@ class Login extends Component{
 
 function LoginForm(props){
 
+  const {handleSubmit, setError} = useForm()
   const TitleForm = ({name, className}) =>{
     return(
       <div className = {className}>
@@ -48,7 +50,7 @@ function LoginForm(props){
   const ButtonToDo = ({typeName}) =>{
     return(
       <div>
-        <button className="btn-action">{typeName}</button>
+        <button type="button" className="btn btn-primary">{typeName}</button>
       </div>
     )
   }
@@ -57,7 +59,7 @@ function LoginForm(props){
     <div className="login-form">
       <TitleForm className="login-title"
                 name="Login"/>
-      <div id="area-input">
+      <div className="login-input">
         <InputArea typeName="Type username"
                     title="Username"/>
         <InputArea typeName="Type password"
