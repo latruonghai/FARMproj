@@ -16,9 +16,9 @@ class Login extends Component{
   render(){
     
     return (
-      <div>
+      <>
         <LoginForm/>
-      </div>
+      </>
     )
   }
 }
@@ -35,23 +35,23 @@ function LoginForm(props){
     );
   }
 
-  const InputArea = ({typeName, title}) =>{
+  const InputArea = ({typeName, title, type}) =>{
     return (
-      <div >
+      <>
         <div className="article-login">{title}</div>
         <input className="input-box"
                 type="text"  
-                placeholder={typeName}/>
+                placeholder={typeName} type={type}/>
         
-      </div>
+      </>
     );
   };
 
   const ButtonToDo = ({typeName}) =>{
     return(
-      <div>
+      <>
         <button type="button" className="btn btn-primary">{typeName}</button>
-      </div>
+      </>
     )
   }
 
@@ -61,9 +61,9 @@ function LoginForm(props){
                 name="Login"/>
       <div className="login-input">
         <InputArea typeName="Type username"
-                    title="Username"/>
+                    title="Username" type="text"/>
         <InputArea typeName="Type password"
-                  title="Password"/>
+                  title="Password" type="password"/>
         <h2 id="forgot-password">Quên mật khẩu</h2>
         <ButtonToDo typeName="Đăng nhập"/>
       </div>

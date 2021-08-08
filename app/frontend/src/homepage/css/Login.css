@@ -1,8 +1,11 @@
 body {
   font-size: 15px;
+  background: aqua !important;
 }
 body .login-form, body .login-input {
   display: grid;
+  background: white;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7));
   width: 400px;
   height: auto;
   margin: auto;
@@ -33,14 +36,21 @@ body #forgot-password {
   font-weight: bold;
   font-size: 15px;
   font-style: italic;
-  left: 75%;
+  left: 48%;
   position: relative;
   color: blue;
   margin-top: 10px;
 }
+body #forgot-password:hover {
+  color: #472e2e;
+  cursor: pointer;
+}
 body .btn {
-  display: flex;
-  justify-content: center;
+  transform: translateX(50%);
+  width: 50%;
+  height: 90%;
+  text-align: center;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=Login.css.map */
