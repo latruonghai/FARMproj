@@ -3,14 +3,16 @@
 
 body{
     font-size: var.$font-size-normal;
-    background-color: red;
+    background-color: aqua !important;
+    // margin-top: 10px;
     .login{
         &-form{
             
             display: grid;
-            background: linear-gradient(from bottom to top,
+            background:white;
+            background: linear-gradient(to right bottom,
                                         rgba(255, 255, 255,0.3),
-                                        rbga(255,255,255, 0.7));
+                                        rgba(255,255,255, 0.7));
             width: 400px;
             height: auto;
             // margin-top: 10px;
@@ -18,9 +20,10 @@ body{
             border-radius: 20px;
             border-style: solid;
             border-width: 1px;
+            margin-top: 5px;
         }
         &-title{
-            color: var.$blue;
+            color: blue;
             font-weight: bold;
             font-size: 20px;
             text-align: center;
@@ -62,4 +65,15 @@ body{
         text-align: center;
         @include mixx.changeCursor;
     }
+    .message-noti{
+        color:red;
+        text-align: center;
+        margin: auto;
+        margin-top: 2px;
+        font-size: var.$font-size-small;
+    }
+    // .bg-orange{
+    //     // height: 15%;
+    //     background-color: #FDC667;
+    // }
 }

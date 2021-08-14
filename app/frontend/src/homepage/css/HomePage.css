@@ -53,8 +53,17 @@ body .btn {
   text-align: center;
   cursor: pointer;
 }
-body .bg-orange {
-  background-color: #FDC667;
+body .message-noti {
+  color: red;
+  text-align: center;
+  margin: auto;
+  margin-top: 2px;
+  font-size: 12px;
 }
 
-/*# sourceMappingURL=Login.css.map */
+body .nav-content {
+  color: black;
+  font-weight: 15px;
+}
+
+/*# sourceMappingURL=HomePage.css.map */

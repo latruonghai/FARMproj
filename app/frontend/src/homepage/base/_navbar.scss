@@ -1,0 +1,9 @@
+@use "./variable" as var;
+
+
+body{
+    .nav-content{
+        color: black;
+        font-weight: var.$font-size-normal;
+    }
+}
