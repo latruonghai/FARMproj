@@ -1,0 +1,29 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+    background-color: rgba($color:#FDC667, $alpha: 1.0) !important  ;
+    .form-control{
+        width: 50%;
+        margin: auto;
+        display: block;
+        border-radius: 10px;
+    }
+    .login-form{
+        // box-shadow: inset;
+        display: block;
+        border-radius: 10px;
+        top: 10px;
+        background: white;
+        background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+        transform: translateY(10px);
+        // border-style: solid;
+        // /border-width: 0px;
+        width: 35%;
+        margin: auto;
+    }
+    .form-group{
+        margin-top: 10px;
+    }
+    button{
+        margin-bottom: 10px;
+    }
+}
