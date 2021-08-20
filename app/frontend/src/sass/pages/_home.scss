@@ -7,7 +7,9 @@ body{
         display: block;
         border-radius: 10px;
     }
-    .login-form{
+    .login{
+
+        &-form {
         // box-shadow: inset;
         display: block;
         border-radius: 10px;
@@ -19,11 +21,35 @@ body{
         // /border-width: 0px;
         width: 35%;
         margin: auto;
+        }
+        &-title{
+            // text-align: center;
+            font-size: 30px !important;
+            color: #dd4125;
+        }
+        &-passwrd-forget:hover{
+            color: purple;
+            cursor: pointer;
+        }
+        &-ava{
+            margin: 20px auto 20px auto;
+            margin-top: 10px;
+        }
+        &-grid{
+            margin-top: 20px;
+        }
     }
     .form-group{
         margin-top: 10px;
     }
     button{
         margin-bottom: 10px;
+    }
+    .sidebar{
+        &-title:hover{
+            cursor: pointer;
+            background-color:rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
     }
 }
