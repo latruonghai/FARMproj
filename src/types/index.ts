@@ -20,12 +20,20 @@ export interface BufferString{
     file: string;
     setFunc?: Dispatch<any>
 }
-export type ImageString  = {
-    imageString: string;
-    state: number | null;
+export interface ImageString {
+    imageString?: string;
+    state?: number | null;
+}
+export interface ImageCode{
+    
+    confidence?: number;
+    faceImage?: string;
+    time?: number;
+    label?:string;
 }
 export interface ImageContextType{
     uploadState: BufferString;
+    
     setImageUpload: Dispatch<any>;
     processState: ImageString;
     setImageProcess: Dispatch<any>;
@@ -33,7 +41,8 @@ export interface ImageContextType{
     setImage: Dispatch<any>;
     sending: boolean;
     setSending: Dispatch<any>;
-
+    imageCode: ImageCode[];
+    setImageCode: Dispatch<any>;
 }
 
 // export interface Data

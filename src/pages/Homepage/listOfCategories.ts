@@ -8,11 +8,7 @@ const categories: NavData = {
             style:[],
             toggle: true
         },
-        {
-            name: "Video",
-            style:[],
-            toggle: true
-        },
+        
 
     ]
 }

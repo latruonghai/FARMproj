@@ -30,7 +30,7 @@ function NavBarInfo({datas}: NavData){
                 <div className="flex justify-between">
                     <div className="flex space-x-1">
 
-                        <LogoNavBar logo={logo} title="Shop"/>
+                        <LogoNavBar logo={logo} title="FER"/>
                         <NavBarItem datas = {datas}/>
                     </div>
                     <NavBarItem datas={datas}/>
