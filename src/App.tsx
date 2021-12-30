@@ -1,6 +1,4 @@
 import React  from "react";
-
-import logo from './testing/logo.svg';
 import HomePage from "./pages/Homepage";
 
 function App(){

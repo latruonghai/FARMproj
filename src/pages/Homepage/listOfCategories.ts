@@ -13,4 +13,11 @@ const categories: NavData = {
     ]
 }
 
-export  {categories};
+const nameOfModules: string[] = 
+[
+    "Blaze Face",
+    "Viola Jones Algorithm",
+    "Face-SSD",
+]
+
+export  {categories, nameOfModules};

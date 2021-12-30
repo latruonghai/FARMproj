@@ -46,3 +46,14 @@ export interface ImageContextType{
 }
 
 // export interface Data
+export interface ViewModule{
+    modules?: string[];
+}
+
+export interface ImageResultProps{
+    imageCode: ImageCode[];
+}
+export interface UploadProps{
+    setImageUpload: Dispatch<any>;
+    uploadState: BufferString;
+}

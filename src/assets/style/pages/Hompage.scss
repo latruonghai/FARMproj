@@ -1,5 +1,5 @@
 
-
+// @import "./components/card.css";
 @layer base{
     body{
         .homepage{
@@ -12,5 +12,9 @@
         .navbar{
             top: 0;
         }
+        li[id$='-tick']{
+            @apply bg-blue-200 text-white
+        }
+
     }
 }

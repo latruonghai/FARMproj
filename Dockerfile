@@ -1,10 +1,6 @@
-FROM node:lts-alpine
-ENV NODE_ENV=production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+FROM node:14.17.5-alpine3.14
+WORKDIR /app
 COPY . .
-EXPOSE 3000
-RUN chown -R node /usr/src/app
-USER node
-CMD ["npm", "start"]
+RUN yarn install  ## các bạn có thể dùng yarn install .... tuỳ nhu cầu nhé
+RUN yarn run build
+CMD [ "yarn", "start" ]
