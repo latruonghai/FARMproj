@@ -11,9 +11,9 @@ export default function ImageView(props:any){
     return (
         <div>
             
-            <div className="md:h-full">
+            <div className="h-full">
                 
-                <div className=" mx-auto p-6 space-y-12 pb-16 w-full md:w-full items-center divide-x-2">
+                <div className="h-full mx-auto p-7 space-y-12 w-full md:w-full items-center divide-x-2">
                     <UploadView modules= {nameOfModules}></UploadView>
                     {/* <CameraCapture/> */}
                     

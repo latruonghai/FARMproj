@@ -13,3 +13,13 @@ export function Rounded(num: number | undefined){
 export function toIDName(name: string) {
     return _.camelCase(name);
 }
+export function ensureURL(str: string){
+    let newStr ="";
+    if(str.includes( ".jpg")|| str.includes(".jpeg")){
+        newStr = "image/jpeg";
+    }
+    else {
+        newStr = "image/png";
+    }
+    return newStr;
+}

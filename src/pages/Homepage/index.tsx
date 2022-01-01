@@ -8,7 +8,7 @@ import { ImageProvider } from "../../hooks/useImageContext";
 function HomePage(){
     return(
         <ImageProvider>
-            <div className="homepage h-auto">
+            <div className="homepage h-full">
                 <NavBarInfo datas={categories.datas}/>
                 {/* <ContentComponent/> */}
                 <ImageView></ImageView>

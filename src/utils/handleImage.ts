@@ -9,7 +9,7 @@ export default function convertImgToBase64(url:string, callBack: any){
 	    canvas.height = img.height;
 		canvas.width = img.width;
 	    ctx.drawImage(img,0,0);
-	    let dataURL = canvas.toDataURL('image/jpeg');
+	    let dataURL = canvas.toDataURL('image/jpeg', 1.0);
         // console.log(dataURL);
 	    callBack.call(this, dataURL);
         // Clean up

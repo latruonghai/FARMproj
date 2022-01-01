@@ -20,4 +20,10 @@ const nameOfModules: string[] =
     "Face-SSD",
 ]
 
-export  {categories, nameOfModules};
+const formatURL: string[] =[
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    
+]
+export  {categories, nameOfModules, formatURL};

@@ -5,6 +5,7 @@ import { ImageCode } from "../types";
 import _ from "lodash";
 import declareURL from '../utils/stringhandle';
 import classNames from "classnames";
+import { ip } from "../services/config";
 // import { OperationCanceledException } from "typescript";
 // import { OperationCanceledException } from "typescript";
 // declareURL
@@ -16,6 +17,7 @@ const Button = (props:any) =>{
         ...uploadState,
         file: _.replace(uploadState.file, "data:image/jpeg;base64,", "")
     }
+    
     const delImage = () =>{
         setImageProcess(
             {
@@ -33,13 +35,14 @@ const Button = (props:any) =>{
         setImageCode([]);
 
     }
-    const sendImage = async () =>{ 
+    const sendImage = async () =>{
+            // console.log("Data",data_image.file);
             setSending(true);
             try{
                 const response = await axios({
                 method: "post",
                 timeout: 15000,
-                url: "http://127.0.0.1:8000/fer/recognition/image",
+                url: `${ip}fer/recognition/image`,
                 data: data_image,
                 headers: { "Content-Type": "application/json", }
             });

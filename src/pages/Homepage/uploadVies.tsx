@@ -36,8 +36,8 @@ const UploadView = (props:ViewModule) =>{
     }
     
     return (
-        <div className="md:flex-1 md:pr-14">
-            <div className="space-y-12">
+        <div className="md:flex-1 md:p-5 h-full">
+            <div className="space-y-12 h-full">
 
                 <ul className="flex bg-blue-500 rounded">
 
@@ -47,7 +47,7 @@ const UploadView = (props:ViewModule) =>{
                         )
                     })}
                 </ul>
-                <div className="w-full flex">
+                <div className="w-full md:flex md:items-center h-full">
                     <UploadImage setImageUpload={setImageUpload} uploadState={uploadState}></UploadImage>
                     <ImageResult processState={processState}></ImageResult>
                     <ListFaceResult imageCode={imageCode}></ListFaceResult>
@@ -59,23 +59,26 @@ const UploadView = (props:ViewModule) =>{
 }
 const ImageResult = ({processState}:any)=>{
     return(
-        <div className="w-5/12 flex flex-col space-y-4">
-                        {processState.state!==null && 
-                        <h2 className="text-red-300 text-lg">
-                            {processState.state ? "Emotions were found":"Emotions were not found"}
-                        </h2>}
-                        <div className="text-center flex justify-center items-center border-4 border-dashed w-80 h-80">
-                            {processState.imageString && <img className="w-full h-full object-contain"  src={processState.imageString}/>
+        <div className="h-full lg:w-1/3 md:flex md:flex-col space-y-4 w-2/3 m-auto lg:p-8">
+                        
+                        <div className="text-center flex justify-center items-center border-4
+                                        border-dashed w-2/3  m-auto lg:h-96 lg:w-96">
+                            {processState.imageString ? <img className="w-full h-full object-contain"  src={processState.imageString}/>
+                            : <span className='font-bold'>Kết quả hiển thị tại đây </span>
                             }
                         </div>
-                    </div>
+                        {processState.state!==null && 
+                        <h2 className="text-red-500 text-bold text-2xl text-center my-2 mx-auto">
+                            {processState.state ? "Cảm xúc đã được nhận diện":"Không tìm thấy cảm xúc"}
+                        </h2>}
+        </div>
     )
 }
 const ListFaceResult = ({imageCode}: ImageResultProps) =>{
     
     return(
-        <div className="w-1/2 flex flex-col space-y-4 left-8 border-solid border-x-2
-                                    rounded-2xl max-h-352 overflow-auto">
+        <div className="lg:w-1/3 flex flex-col space-y-4 left-8 border-solid border-x-2
+                                    rounded-2xl lg:max-h-352 max-h-20 overflow-auto my-3 lg:mx-3">
                         <div className="text-center flex flex-col justify-center items-center border-solid max-w-full">
                             
                             {imageCode && imageCode.map( (image, index) =>{
@@ -150,17 +153,17 @@ const UploadImage = ({setImageUpload, uploadState}:UploadProps) =>{
         
     }
     return(
-        <div className="w-1/2 flex flex-col items-center space-y-4">
-                        <div className={classNames("text-center flex justify-center items-center", 
+        <div className="lg:w-1/3 w-2/3 flex flex-col items-center space-y-4 my-5 m-auto">
+                        <div className={classNames("text-center flex justify-center cursor-pointer items-center", 
                             {
-                                "w-56 h-56 p-4 border-4 border-dashed": !uploadState.file,
-                                "w-96 h-96 p-4": uploadState.file
+                                "w-5/6 h-4/5 p-4 border-solid lg:w-56 lg:h-56 lg:p-4 border-4 lg:border-dashed": !uploadState.file,
+                                "w-full h-full p-4": uploadState.file
                             })} onClick={handleUpload}>
                                 <input id="hidden_upload" type="file" accept="image/jpeg, image/png"
                                 multiple style={{display:"none"}} tabIndex={-1} autoComplete="off" onChange={Uploaded}/>
                                 
                                 {uploadState.file ? 
-                                <div className="md:p-8 w-full h-full align-middle bg-gradient-to-r from-yellow-100 via-red-200 to-pink-300">
+                                <div className="lg:p-8 w-full h-full lg:h-96 lg:w-96 align-middle bg-gradient-to-r from-yellow-100 via-red-200 to-pink-300">
                                     <img className="w-full h-full object-contain" alt="selected Image" src = {uploadState.file}/>
                                 </div> : <p>Tải lên hình ảnh</p>}
                         </div>
