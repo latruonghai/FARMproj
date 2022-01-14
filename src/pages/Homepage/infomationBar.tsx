@@ -1,9 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import logo from "../../assets/images/logo.svg"
 import {NavData} from "../../types";
 import { useEffect, useState } from "react";
+import useModal from "../../hooks/useModal";
+import Modal from "../../components/Modal";
+// import { guideLines } from "./listOfCategories";
 
-function NavBarInfo({datas}: NavData){
+function NavBarInfo({datas}:NavData ){
     const [currentPos, setPos] = useState(window.pageYOffset);
     
     useEffect(()=>{
@@ -31,7 +34,7 @@ function NavBarInfo({datas}: NavData){
                     <div className="flex space-x-1">
 
                         <LogoNavBar logo={logo} title="FER"/>
-                        <NavBarItem datas = {datas}/>
+                        <NavBarItem datas = {datas} />
                     </div>
                     <NavBarItem datas={datas}/>
                     <MobileMenuButton/>
@@ -89,17 +92,24 @@ function MobileMenuButton(){
 		</div>
     )
 }
-function NavBarItem({datas} : NavData){
-    const catego = datas.map(cat =>{
+function NavBarItem({datas}: NavData){
+    const {isShowing, toggle} = useModal();
+    const catego = datas.map((cat:any)  =>{
         const nameClass = "navbar-item";
         return (
             <a href="#" className={nameClass}>{cat.name}</a>
         )
     })
     return(
-        <div className="hidden md:flex items-center space-x-1">
+        <Fragment>
+            <div onClick={toggle} className="hidden md:flex items-center space-x-1">
 			{catego}			
 	    </div>
+        <Modal
+            isShowing={isShowing}
+            hide={toggle}
+            ></Modal>
+        </Fragment>
     )
 }
 

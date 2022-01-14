@@ -1,12 +1,16 @@
-import React, {useContext} from 'react';
-import { ViewModule, ImageResultProps, UploadProps } from '../../types/index';
+import React, {Fragment, useContext, useReducer, useRef} from 'react';
+import { ViewModule, ImageResultProps, UploadProps, ViewModules } from '../../types/index';
 import ImageContext from '../../hooks/useImageContext';
 import _ from "lodash";
-import { nameOfModules } from './listOfCategories';
+import { dropDownName} from './listOfCategories';
 import declareURL from '../../utils/stringhandle';
 import classNames from 'classnames';
 import { Rounded } from '../../utils/stringhandle';
 import convertImgToBase64 from '../../utils/handleImage';
+import DropDown from '../../components/Dropdown';
+import Button from '../../components/Button';
+import reducer from '../../hooks/useImageRequestReducer';
+// import Button
 // import classNames
 // Rounded
 // declareURL
@@ -14,40 +18,44 @@ import convertImgToBase64 from '../../utils/handleImage';
 
 let stateCurr: any = null;
 
-const UploadView = (props:ViewModule) =>{
+const UploadView = (props:ViewModules) =>{
     let {uploadState, setImageUpload, processState, imageCode} = useContext(ImageContext);
     
 
-    const clickHandle = function(e:any) {
-        let classname:string = e.target.className as string;
-        e.target.className = _.replace(classname, "bg-white", "bg-blue text-white");
-        const stateCurrName = stateCurr?.target?.className;
-        if (stateCurr) stateCurr.target.className = (e.target !==stateCurr?.target)?
-        _.replace(stateCurrName, "bg-blue text-white", "bg-white"):
-        stateCurrName;
-        stateCurr = e;
-        stateCurr && setImageUpload(
+    // const clickHandle = function(e:any) {
+    //     let classname:string = e.target.className as string;
+    //     e.target.className = _.replace(classname, "bg-white", "bg-blue text-white");
+    //     const stateCurrName = stateCurr?.target?.className;
+    //     if (stateCurr) stateCurr.target.className = (e.target !==stateCurr?.target)?
+    //     _.replace(stateCurrName, "bg-blue text-white", "bg-white"):
+    //     stateCurrName;
+    //     stateCurr = e;
+    //     stateCurr && setImageUpload(
         
-            {
-                ...uploadState,
-                gpu: _.indexOf(nameOfModules, stateCurr.target.firstChild.data) - 1
-            }
-        );
-    }
+    //         {
+    //             ...uploadState,
+    //             gpu: _.indexOf(nameOfModules, stateCurr.target.firstChild.data) - 1
+    //         }
+    //     );
+    // }
+    // console.log(props.modules)
     
     return (
         <div className="md:flex-1 md:p-5 h-full">
             <div className="space-y-12 h-full">
 
-                <ul className="flex bg-blue-500 rounded">
+                {/* <ul className="flex bg-blue-500 rounded">
 
                 {props?.modules?.map((module, index) =>{
                     return(
                         <li key={index.toString()} className="m-0.5 flex bg-white text-center items-center justify-center flex-1 text-sm p-0.5 cursor-pointer" onClick={clickHandle}>{module}</li>
                         )
                     })}
-                </ul>
-                <div className="w-full md:flex md:items-center h-full">
+                </ul> */}
+                
+                <OptionView module={props!.modules![0]} type="gpu" bg="bg-blue"></OptionView>
+                <OptionView module={props!.modules![1] } type="method" bg="bg-red-500"></OptionView>
+                <div className="w-full md:flex h-full">
                     <UploadImage setImageUpload={setImageUpload} uploadState={uploadState}></UploadImage>
                     <ImageResult processState={processState}></ImageResult>
                     <ListFaceResult imageCode={imageCode}></ListFaceResult>
@@ -55,6 +63,45 @@ const UploadView = (props:ViewModule) =>{
                 </div>
             </div>
         </div>
+    )
+}
+
+const OptionView = (props:ViewModule) =>{
+    const {setImageUpload, stateOption, setStateOption} = useContext(ImageContext);
+    // const [state, dispatch] = useReducer(reducer, uploadState);
+    // const optionRef = useRef<HTMLLIElement>(null);
+    const clickHandle = function(e:any) {
+        setStateOption({type: props.type, event: e, 
+                                    stateCurr: stateOption, bg:props.bg});
+        // console.log("REF",optionRef.current!.class);
+        // console.log("Stateop", stateOption)
+        // console.log("stateCurr", stateCurr);
+        // let classname:string = e.target.className as string;
+        // e.target.className = _.replace(classname, "bg-white", `${props.bg} text-white`);
+        // const stateCurrName = stateCurr?.target?.className;
+        // if (stateCurr) stateCurr.target.className = (e.target !==stateCurr?.target)?
+        // _.replace(stateCurrName, `${props.bg} text-white`, "bg-white"):
+        // stateCurrName;
+        // stateCurr = e;
+        setImageUpload({type: props.type, data: props.module,
+            currentData: e.target.firstChild.data});
+        // console.log(state);
+        // stateCurr && setImageUpload(
+        //     stateImage
+        // console.log("uploadState", uploadState);
+        // );
+    }
+    return(
+        <Fragment>
+            <ul className="flex bg-blue-500 rounded">
+
+                {props?.module?.map((module, index) =>{
+                    return(
+                        <li key={index.toString()} className="m-0.5 flex bg-white text-center items-center justify-center flex-1 text-sm p-0.5 cursor-pointer" onClick={clickHandle}>{module}</li>
+                        )
+                    })}
+                </ul>
+        </Fragment>
     )
 }
 const ImageResult = ({processState}:any)=>{
@@ -71,14 +118,21 @@ const ImageResult = ({processState}:any)=>{
                         <h2 className="text-red-500 text-bold text-2xl text-center my-2 mx-auto">
                             {processState.state ? "Cảm xúc đã được nhận diện":"Không tìm thấy cảm xúc"}
                         </h2>}
+                        <div className="flex flex-row items-center justify-center">
+                        <Button id="del" actionName = "Xóa" process={false} send={false}></Button>
+                        <Button id="proc" actionName="Xử lý" send={true} process={true} />
+                    </div>
         </div>
     )
 }
 const ListFaceResult = ({imageCode}: ImageResultProps) =>{
-    
+    const len = imageCode.length;
     return(
         <div className="lg:w-1/3 flex flex-col space-y-4 left-8 border-solid border-x-2
-                                    rounded-2xl lg:max-h-352 max-h-20 overflow-auto my-3 lg:mx-3">
+                                    rounded-2xl lg:max-h-376 max-h-20 overflow-auto my-2 lg:mx-3 items-center">
+                        {len>0 && <h2 className='text-center text-red-300 font-bold '>{
+                            `Đã tìm thấy ${len} cảm xúc`
+                        }</h2>}
                         <div className="text-center flex flex-col justify-center items-center border-solid max-w-full">
                             
                             {imageCode && imageCode.map( (image, index) =>{
@@ -126,10 +180,12 @@ const UploadImage = ({setImageUpload, uploadState}:UploadProps) =>{
             let base64String = reader.result as string;
             base64String = base64String.replace("data:", "").replace(/^.+,/, "");
             
-            setImageUpload({
-                ...uploadState,
-                file: declareURL(base64String)
-            });
+            setImageUpload(
+                {
+                    type: "uploadFromImage",
+                    file: declareURL(base64String)
+                }
+            )
             
 
         }
@@ -144,7 +200,7 @@ const UploadImage = ({setImageUpload, uploadState}:UploadProps) =>{
         convertImgToBase64(e.target.value, function (url:any){
             setImageUpload(
                 {
-                    ...uploadState,
+                    type: "uploadFromImage",
                     file: url
                 }
             )
@@ -153,7 +209,7 @@ const UploadImage = ({setImageUpload, uploadState}:UploadProps) =>{
         
     }
     return(
-        <div className="lg:w-1/3 w-2/3 flex flex-col items-center space-y-4 my-5 m-auto">
+        <div className="lg:w-1/3 w-2/3 flex flex-col items-center space-y-4 my-auto m-auto">
                         <div className={classNames("text-center flex justify-center cursor-pointer items-center", 
                             {
                                 "w-5/6 h-4/5 p-4 border-solid lg:w-56 lg:h-56 lg:p-4 border-4 lg:border-dashed": !uploadState.file,
@@ -173,6 +229,10 @@ const UploadImage = ({setImageUpload, uploadState}:UploadProps) =>{
                             <input id="img-link"  type="text" placeholder='Chèn link ảnh tại đây'
                             className='border-dashed rounded-xl text-center focus:border-blue-500
                                 hover:bg-red-100 select-all'  onChange={handleChangeInput}></input>
+                            
+                        </div>
+                        <div className='flex'>
+                            <DropDown categories={dropDownName} title="Tiền xử lý?"></DropDown>
                         </div>
                     </div>
     );
