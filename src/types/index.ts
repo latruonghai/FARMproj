@@ -1,3 +1,4 @@
+// import { StateOption } from './index';
 import { Dispatch, SetStateAction } from "react";
 // import { ImageContext } from '../hooks/useImageContext';
 
@@ -16,13 +17,33 @@ type Component = {
 
 export interface BufferString{
     gpu: number;
+    method?:number;
     show: boolean;
     file: string;
-    setFunc?: Dispatch<any>
+    process: number;
+    // setFunc?: Dispatch<any>
 }
 export interface ImageString {
     imageString?: string;
     state?: number | null;
+    
+}
+export interface ActionImageReducer{
+    type:string;
+    data: string[];
+    currentData: string;
+    file: string;
+    process: number;
+}
+export interface ActionOptionReducer{
+    type: string;
+    event: any;
+    stateCurr: StateOption;
+    bg:string;
+}
+export interface StateOption{
+    moduleStateCurr: any;
+    methodStateCurr: any;
 }
 export interface ImageCode{
     
@@ -33,7 +54,8 @@ export interface ImageCode{
 }
 export interface ImageContextType{
     uploadState: BufferString;
-    
+    stateOption: StateOption;
+    setStateOption: Dispatch<any>;
     setImageUpload: Dispatch<any>;
     processState: ImageString;
     setImageProcess: Dispatch<any>;
@@ -47,9 +69,14 @@ export interface ImageContextType{
 
 // export interface Data
 export interface ViewModule{
-    modules?: string[];
-}
+    type: string;
 
+    module: string[];
+    bg?:string;
+}
+export interface ViewModules{
+    modules?: string[][];
+}
 export interface ImageResultProps{
     imageCode: ImageCode[];
 }
