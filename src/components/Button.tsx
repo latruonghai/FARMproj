@@ -17,7 +17,6 @@ const Button = (props:any) =>{
         ...uploadState,
         file: _.replace(uploadState.file, "data:image/jpeg;base64,", "")
     }
-    
     const delImage = () =>{
         setImageProcess(
             {
@@ -25,9 +24,9 @@ const Button = (props:any) =>{
                 state:null
             }
         );
-        setImageUpload(
+        setImageUpload (
             {
-                file:""
+                type:"delUpload"
             }
         );
         document!.querySelector("input")!.value="";
