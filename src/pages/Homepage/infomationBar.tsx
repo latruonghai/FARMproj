@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/logo-uit.png";
 import {NavData} from "../../types";
 import { useEffect, useState } from "react";
 import useModal from "../../hooks/useModal";
