@@ -54,7 +54,7 @@ const UploadView = (props:ViewModules) =>{
                 </ul> */}
                 
                 <OptionView module={props!.modules![0]} type="gpu" bg="bg-blue"></OptionView>
-                <OptionView module={props!.modules![1] } type="method" bg="bg-red-500"></OptionView>
+                <OptionView module={props!.modules![1] } type="method" bg="bg-green-600"></OptionView>
                 <div className="w-full md:flex h-full">
                     <UploadImage setImageUpload={setImageUpload} uploadState={uploadState}></UploadImage>
                     <ImageResult processState={processState}></ImageResult>
@@ -130,7 +130,7 @@ const ListFaceResult = ({imageCode}: ImageResultProps) =>{
     return(
         <div className="lg:w-1/3 flex flex-col space-y-4 left-8 border-solid border-x-2
                                     rounded-2xl lg:max-h-376 max-h-20 overflow-auto my-2 lg:mx-3 items-center">
-                        {len>0 && <h2 className='text-center text-red-300 font-bold '>{
+                        {len>0 && <h2 className='text-center text-red-500 font-bold '>{
                             `Đã tìm thấy ${len} cảm xúc`
                         }</h2>}
                         <div className="text-center flex flex-col justify-center items-center border-solid max-w-full">
@@ -219,7 +219,7 @@ const UploadImage = ({setImageUpload, uploadState}:UploadProps) =>{
                                 multiple style={{display:"none"}} tabIndex={-1} autoComplete="off" onChange={Uploaded}/>
                                 
                                 {uploadState.file ? 
-                                <div className="lg:p-8 w-full h-full lg:h-96 lg:w-96 align-middle bg-gradient-to-r from-yellow-100 via-red-200 to-pink-300">
+                                <div className="lg:p-8 w-full h-full lg:h-96 lg:w-96 align-middle ">
                                     <img className="w-full h-full object-contain" alt="selected Image" src = {uploadState.file}/>
                                 </div> : <p>Tải lên hình ảnh</p>}
                         </div>
